@@ -3,14 +3,13 @@ import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
 
 @Component({
-  selector: 'app-heroes',
-  templateUrl: './heroes.component.html',
-  styleUrls: ['./heroes.component.scss']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
-export class HeroesComponent implements OnInit {
-  heroes: Hero[];
+export class DashboardComponent implements OnInit {
+  heroes: Hero[] = [];
 
-  // HeroService injection
   constructor(private heroService: HeroService) { }
 
   ngOnInit() {
@@ -19,7 +18,7 @@ export class HeroesComponent implements OnInit {
 
   getHeroes(): void {
     this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes);
+      .subscribe(heroes => this.heroes = heroes.slice(1, 5));
   }
 
 }
